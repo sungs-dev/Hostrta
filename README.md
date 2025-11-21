@@ -51,8 +51,8 @@ php artisan view:clear
 ### 3. Activación
 
 1.  Ingrese a su panel de administración.
-2.  Navegue a **Admin** > **Settings** > **General**.
-3.  En el menú desplegable "Theme", seleccione **MayTheme**.
+2.  Navegue a **Configuraciones** > **General**.
+3.  Bajas hasta encontrarte con "Theme", seleccione **MayTheme**.
 4.  Guarde los cambios.
 
 > **Nota:** Se recomienda forzar una recarga del navegador (Ctrl + F5) tras la activación para purgar estilos CSS antiguos almacenados en caché.
