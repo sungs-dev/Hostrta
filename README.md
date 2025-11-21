@@ -43,7 +43,7 @@ git clone https://github.com/SoySapo6/MayTheme.git
 cp -r /var/www/ctrlpanel/themes/MayTheme/MayTheme /var/www/ctrlpanel/public/themes
 ```
 
-> **NOTA:** Si decides actualizar el tema ejecuta ```cd /var/www/ctrlpanel/themes/MayTheme; git pull && rm /var/www/ctrlpanel/public/themes/MayTheme && cp -r /var/www/ctrlpanel/themes/MayTheme/MayTheme /var/www/ctrlpanel/public/themes```
+> **NOTA:** Si decides actualizar el tema ejecuta ```cd /var/www/ctrlpanel/themes/MayTheme; git pull && rm -rf /var/www/ctrlpanel/public/themes/MayTheme && cp -r /var/www/ctrlpanel/themes/MayTheme/MayTheme /var/www/ctrlpanel/public/themes```
 
 ### 2. Activación
 
