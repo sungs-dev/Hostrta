@@ -43,16 +43,12 @@ git clone https://github.com/SoySapo6/MayTheme.git
 mv /var/www/ctrlpanel/themes/MayTheme/MayTheme /var/www/ctrlpanel/public/themes
 ```
 
-> Si deseas actualizar el tema ejecuta ```cd /var/www/ctrlpanel/themes/MayTheme; git pull```
-
 ### 2. Activación
 
 1.  Ingrese a su panel de administración.
 2.  Navegue a **Configuraciones** > **General**.
 3.  Bajas hasta encontrarte con "Theme", seleccione **MayTheme**.
 4.  Guarde los cambios.
-
-> **Nota:** Se recomienda forzar una recarga del navegador (Ctrl + F5) tras la activación para purgar estilos CSS antiguos almacenados en caché, Ademas que tengo pensado hacer una actualizacion navidadeña.
 
 ## Créditos y Atribución
 
