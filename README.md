@@ -50,7 +50,6 @@ Es necesario limpiar la caché de vistas de Laravel para que el sistema reconozc
 
 ```bash
 cd /var/www/ctrlpanel
-php artisan theme:refresh
 php artisan optimize:clear
 php artisan view:clear
 ```
