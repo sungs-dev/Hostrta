@@ -9,6 +9,11 @@
   Diseñado exclusivamente para <a href="https://dash.nefu.life">MayHost</a>.
 </p>
 
+|                     |                     |                     |
+|:-------------------:|:-------------------:|:-------------------:|
+| **Vista de Administrador**       | **Panel de Control**       | **Servidores**       |
+| <img src="https://files.catbox.moe/61cf7c.png" width="1920"/> | <img src="https://files.catbox.moe/unii6d.png" width="1920"/> | <img src="https://files.catbox.moe/q05d22.png" width="1920"/> |
+
 ---
 
 ## Descripción
