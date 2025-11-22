@@ -474,11 +474,24 @@
       const regex = /\[REPRODUCE\]\((.*?)\)/;
       const match = msg.match(regex);
       if (match && match[1]) {
-          new Audio(match[1]).play();
+          new Audio(match[1]).play().catch(e=>console.log(e));
           return msg.replace(regex, '');
       }
       return msg;
   };
+
+  document.addEventListener("DOMContentLoaded", () => {
+      const regex = /\[REPRODUCE\]\((.*?)\)/;
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      let node;
+      while(node = walker.nextNode()) {
+          const match = node.nodeValue.match(regex);
+          if(match && match[1]) {
+              new Audio(match[1]).play().catch(e => console.log("Autoplay bloqueado por navegador, necesita interacción"));
+              node.nodeValue = node.nodeValue.replace(regex, '');
+          }
+      }
+  });
 
   @if (Session::has('error'))
   Swal.fire({
