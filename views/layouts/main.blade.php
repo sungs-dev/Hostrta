@@ -200,6 +200,14 @@
             @endcanany
           @endif
 
+          <li class="nav-item">
+            <a href="{{ route('notifications.index') }}"
+                class="nav-link @if (Request::routeIs('notifications.*')) active @endif">
+                <i class="nav-icon fa fa-history"></i>
+                <p>{{ __('Actividad') }}</p>
+            </a>
+          </li>
+
           @canany(array_merge(
               PermissionGroups::TICKET_PERMISSIONS,
               PermissionGroups::OVERVIEW_PERMISSIONS,
