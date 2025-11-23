@@ -44,7 +44,7 @@
     }
   </style>
   <link rel="stylesheet" href="{{ asset('themes/MayTheme/app.css') }}">
-  <link rel="stylesheet" href="{{ asset('themes/MayTheme/css/may.css') }}">
+<link rel="stylesheet" href="{{ asset("themes/MayTheme/css/may.css") }}?v=11.0">
 </head>
 
 <body class="sidebar-mini layout-fixed dark-mode" style="height: auto;">
@@ -66,42 +66,93 @@
               class="{{ $link->icon }}"></i> {{ $link->title }}</a>
         </li>
       @endforeach
-
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('home') }}" class="nav-link">
-          <img
-            src="{{ \Illuminate\Support\Facades\Storage::disk('public')->exists('logo.png') ? asset('storage/logo.png') : asset('images/ctrlpanel_logo.png') }}"
-            alt="{{ config('app.name', 'Ctrlpanel.gg') }} Logo"
-            class="brand-image img-circle elevation-3"
-            style="opacity: .8; height: 25px; margin-right: 5px;">
-          <span class="brand-text font-weight-light">{{ config('app.name', 'MayHost') }}</span>
-        </a>
-      </li>
     </ul>
 
     <ul class="ml-auto navbar-nav">
 
-      <li class="nav-item">
-        <form method="post" action="{{ route('logout') }}" class="d-inline">
-          @csrf
-          <button class="nav-link btn btn-link" title="{{ __('Logout') }}">
-            <i class="fas fa-sign-out-alt"></i>
-          </button>
-        </form>
+      <li class="nav-item dropdown">
+        <a class="px-2 nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-1 text-gray-600 d-lg-inline">
+                            <small><i class="mr-2 fas fa-coins"></i></small>{{ Currency::formatForDisplay(Auth::user()->credits) }}
+                        </span>
+        </a>
+        <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
+             aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="{{ route('store.index') }}">
+            <i class="mr-2 text-gray-400 fas fa-coins fa-sm fa-fw"></i>
+            {{ __('Store') }}
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" data-toggle="modal" data-target="#redeemVoucherModal"
+             href="javascript:void(0)">
+            <i class="mr-2 text-gray-400 fas fa-money-check-alt fa-sm fa-fw"></i>
+            {{ __('Redeem code') }}
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown no-arrow">
+        <a class="px-2 nav-link dropdown-toggle no-arrow" href="#" id="userDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-1 text-gray-600 d-lg-inline small">
+                            {{ Auth::user()->name }}
+                            @if (Auth::user()->unreadNotifications->count() != 0)
+                            <span class="badge badge-warning navbar-badge position-absolute" style="top: 0px;">
+                                    {{ Auth::user()->unreadNotifications->count() }}
+                                </span>
+                          @endif
+                        </span>
+        </a>
+        <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
+             aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="{{ route('profile.index') }}">
+            <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
+            {{ __('Profile') }}
+          </a>
+          <a class="dropdown-item position-relative" href="{{ route('notifications.index') }}">
+            <i class="mr-2 text-gray-400 fas fa-bell fa-sm fa-fw"></i>
+            {{ __('Notifications') }}
+            @if (Auth::user()->unreadNotifications->count() != 0)
+              <span class="badge badge-warning navbar-badge position-absolute" style="top: 10px;">
+                                    {{ Auth::user()->unreadNotifications->count() }}
+                                </span>
+            @endif
+          </a>
+          <a class="dropdown-item" href="{{ route('preferences.index') }}">
+            <i class="mr-2 text-gray-400 fas fa-cog fa-sm fa-fw"></i>
+            {{ __('Preferences') }}
+          </a>
+          @if (session()->get('previousUser'))
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ route('users.logbackin') }}">
+              <i class="mr-2 text-gray-400 fas fa-sign-in-alt fa-sm fa-fw"></i>
+              {{ __('Log back in') }}
+            </a>
+          @endif
+          <div class="dropdown-divider"></div>
+          <form method="post" action="{{ route('logout') }}">
+            @csrf
+            <button class="dropdown-item" href="#" data-toggle="modal"
+                    data-target="#logoutModal">
+              <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
+              {{ __('Logout') }}
+            </button>
+
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </form>
+        </div>
       </li>
     </ul>
   </nav>
   <aside class="main-sidebar sidebar-open sidebar-dark-primary elevation-4">
-    <div class="brand-link">
-      <div class="user-panel d-flex">
-        <div class="info">
-          <span class="d-block font-weight-bold text-white">{{ Auth::user()->name }}</span>
-          <span class="d-block text-white">
-            <i class="fas fa-coins mr-2"></i>{{ Currency::formatForDisplay(Auth::user()->credits) }}
-          </span>
-        </div>
-      </div>
-    </div>
+    <a href="{{ route('home') }}" class="brand-link">
+      <img width="64" height="64"
+           src="{{ \Illuminate\Support\Facades\Storage::disk('public')->exists('icon.png') ? asset('storage/icon.png') : asset('images/ctrlpanel_logo.png') }}"
+           alt="{{ config('app.name', 'Laravel') }} Logo" class="brand-image img-circle"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">{{ config('app.name', 'CtrlPanel.gg') }}</span>
+    </a>
 
     <div class="sidebar" style="overflow-y: auto">
 
@@ -149,53 +200,13 @@
             @endcanany
           @endif
 
-          <li class="nav-header">{{ __('Cuenta') }}</li>
-
           <li class="nav-item">
-            <a href="{{ route('profile.index') }}"
-               class="nav-link @if (Request::routeIs('profile.index')) active @endif">
-              <i class="nav-icon fa fa-user"></i>
-              <p>{{ __('Profile') }}</p>
-            </a>
+           <a href="{{ route('notifications.index') }}"
+           class="nav-link @if (Request::routeIs('notifications.*')) active @endif">
+           <i class="nav-icon fa fa-bell"></i>
+          <p>{{ __('Notificaciones') }}</p>
+          </a>
           </li>
-
-          <li class="nav-item">
-            <a href="{{ route('notifications.index') }}"
-               class="nav-link @if (Request::routeIs('notifications.*')) active @endif">
-              <i class="nav-icon fa fa-bell"></i>
-              <p>
-                {{ __('Notifications') }}
-                @if (Auth::user()->unreadNotifications->count() != 0)
-                  <span class="badge badge-warning right">{{ Auth::user()->unreadNotifications->count() }}</span>
-                @endif
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ route('preferences.index') }}"
-               class="nav-link @if (Request::routeIs('preferences.index')) active @endif">
-              <i class="nav-icon fa fa-cog"></i>
-              <p>{{ __('Preferences') }}</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#redeemVoucherModal"
-               href="javascript:void(0)">
-              <i class="nav-icon fa fa-money-check-alt"></i>
-              <p>{{ __('Redeem code') }}</p>
-            </a>
-          </li>
-
-          @if (session()->get('previousUser'))
-            <li class="nav-item">
-              <a href="{{ route('users.logbackin') }}" class="nav-link">
-                <i class="nav-icon fa fa-sign-in-alt"></i>
-                <p>{{ __('Log back in') }}</p>
-              </a>
-            </li>
-          @endif
 
           @canany(array_merge(
               PermissionGroups::TICKET_PERMISSIONS,
