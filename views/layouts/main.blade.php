@@ -44,7 +44,7 @@
     }
   </style>
   <link rel="stylesheet" href="{{ asset('themes/MayTheme/app.css') }}">
-<link rel="stylesheet" href="{{ asset("themes/MayTheme/css/may_v11.css") }}?v=11.0">
+<link rel="stylesheet" href="{{ asset("themes/MayTheme/css/may.css") }}?v=11.0">
 </head>
 
 <body class="sidebar-mini layout-fixed dark-mode" style="height: auto;">
