@@ -56,48 +56,54 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('home') }}" class="nav-link">Home</a>
+            <a href="{{ route('home') }}" class="nav-link">Inicio</a>
         </li>
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto align-items-center">
+        <li class="nav-item d-none d-sm-inline-block">
+            <span class="navbar-text mr-3">
+                <strong>{{ Auth::user()->name }}</strong>
+            </span>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <span class="navbar-text mr-3">
+                <i class="fas fa-coins mr-1"></i>{{ Currency::formatForDisplay(Auth::user()->credits) }}
+            </span>
+        </li>
+
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                Cuenta
+            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                <i class="fas fa-user-circle"></i> Cuenta
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="{{ route('notifications.index') }}" class="dropdown-item">
-                    <i class="fas fa-bell mr-2"></i> Notificaciones
-                </a>
-                <div class="dropdown-divider"></div>
+            <div class="dropdown-menu dropdown-menu-right">
                 <a href="{{ route('profile.index') }}" class="dropdown-item">
                     <i class="fas fa-user mr-2"></i> Perfil
                 </a>
                 <div class="dropdown-divider"></div>
+                <a href="{{ route('notifications.index') }}" class="dropdown-item">
+                    <i class="fas fa-bell mr-2"></i> Notificaciones
+                </a>
+                <div class="dropdown-divider"></div>
                 <a href="{{ route('preferences.index') }}" class="dropdown-item">
-                    <i class="fas fa-cog mr-2"></i> Preferencias
+                    <i class="fas fa-cogs mr-2"></i> Preferencias
                 </a>
             </div>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal" title="Cerrar sesión">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </li>
     </ul>
 </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-            <img src="{{ asset('storage/avatars/' . Auth::user()->avatar) }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-            <small class="text-white"><i class="fas fa-coins mr-1"></i>{{ Currency::formatForDisplay(Auth::user()->credits) }}</small>
-        </div>
-    </div>
+    <a href="{{ route('home') }}" class="brand-link">
+        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->exists('logo.png') ? asset('storage/logo.png') : asset('images/ctrlpanel_logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">MayHost</span>
+    </a>
 
     <!-- Sidebar -->
     <div class="sidebar" style="overflow-y: auto">
@@ -139,18 +145,20 @@
           @endif
 
           <li class="nav-item">
-            <a href="{{ route('store.index') }}" class="nav-link @if (Request::routeIs('store.*')) active @endif">
-                <i class="nav-icon fas fa-shopping-basket"></i>
-                <p>Tienda</p>
-            </a>
-           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#redeemVoucherModal"
-               href="javascript:void(0)">
-              <i class="nav-icon fas fa-money-check-alt"></i>
-              <p>Canjear código</p>
+            <a href="{{ route('store.index') }}"
+               class="nav-link @if (Request::routeIs('store.index')) active @endif">
+              <i class="nav-icon fa fa-shopping-basket"></i>
+              <p>Tienda</p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#redeemVoucherModal">
+                <i class="nav-icon fa fa-money-check-alt"></i>
+                <p>Canjear código</p>
+            </a>
+          </li>
+          
           @if (session()->get('previousUser'))
             <li class="nav-item">
               <a class="nav-link" href="{{ route('users.logbackin') }}">
@@ -381,17 +389,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="logoutModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="logoutModalLabel">¿Listo para salir?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Select "Logout" below if you are ready to end your current session.
+                    Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-primary">Logout</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-primary">Cerrar sesión</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
