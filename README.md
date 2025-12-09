@@ -40,17 +40,17 @@ Acceda al directorio de temas de su instalación CtrlPanel y clone los archivos 
 
 ```bash
 cd /var/www/ctrlpanel/themes
-git clone https://github.com/SoySapo6/MayTheme.git
-cp -r /var/www/ctrlpanel/themes/MayTheme/MayTheme /var/www/ctrlpanel/public/themes
+git clone https://github.com/sungs-dev/Hostrta.git
+cp -r /var/www/ctrlpanel/themes/Hostrta/Hostrta /var/www/ctrlpanel/public/themes
 ```
 
-> **NOTA:** Si decides actualizar el tema ejecuta ```cd /var/www/ctrlpanel/themes/MayTheme; git pull && rm -rf /var/www/ctrlpanel/public/themes/MayTheme && cp -r /var/www/ctrlpanel/themes/MayTheme/MayTheme /var/www/ctrlpanel/public/themes```
+> **NOTA:** Si decides actualizar el tema ejecuta ```cd /var/www/ctrlpanel/themes/Hostrta; git pull && rm -rf /var/www/ctrlpanel/public/themes/Hostrta && cp -r /var/www/ctrlpanel/themes/Hostrta/Hostrta /var/www/ctrlpanel/public/themes```
 
 ### 2. Activación
 
 1.  Ingrese a su panel de administración.
 2.  Navegue a **Configuraciones** > **General**.
-3.  Bajas hasta encontrarte con "Theme", seleccione **MayTheme**.
+3.  Bajas hasta encontrarte con "Theme", seleccione **Hostrta**.
 4.  Guarde los cambios.
 
 ## Créditos y Atribución
