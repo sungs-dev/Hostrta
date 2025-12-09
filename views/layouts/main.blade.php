@@ -557,7 +557,7 @@
   })
   @endif
 </script>
-<script>document.addEventListener("DOMContentLoaded",()=>{const f=document.querySelector(".main-footer");if(f)f.innerHTML="<div class=\"may-footer-content\">Powered by CtrlPanel ᴹᵃʸᵀʰᵉᵐᵉ <span>|</span> <a href=\"https://github.com/SoySapo6\" target=\"_blank\" class=\"may-link\">SoyMaycol</a></div>";document.querySelectorAll("a").forEach(a=>{if(a.textContent.toUpperCase().includes("GITHUB")){a.href="https://github.com/SoySapo6/MayTheme"}if(a.textContent.includes("CtrlPanel")||a.href.includes("sponsors")){a.innerHTML="<i class=\"fab fa-whatsapp\"></i> Sigueme en WhatsApp";a.href="https://whatsapp.com/channel/0029VayXJte65yD6LQGiRB0R";a.target="_blank"}})});</script>
+<script>document.addEventListener("DOMContentLoaded",()=>{const f=document.querySelector(".main-footer");if(f)f.innerHTML="<div class=\"may-footer-content\">Powered by Felix HostRta <span>|</span> <a href=\"https://whatsapp.com/channel/0029VbBvrmwC1Fu5SYpbBE2A\" target=\"_blank\" class=\"may-link\">Canal</a></div>";document.querySelectorAll("a").forEach(a=>{if(a.textContent.toUpperCase().includes("GITHUB")){a.href="https://github.com/PixelCrew-Team"}if(a.textContent.includes("CtrlPanel")||a.href.includes("sponsors")){a.innerHTML="<i class=\"fab fa-whatsapp\"></i> Sigueme en WhatsApp";a.href="https://whatsapp.com/channel/0029VbBvrmwC1Fu5SYpbBE2A";a.target="_blank"}})});</script>
 </body>
 
 </html>
