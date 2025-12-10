@@ -1,9 +1,9 @@
 {
-    "name": "MayTheme v12",
-    "title": "MayTheme • Tema para CtrlPanel",
+    "name": "Hostrta v1",
+    "title": "Hoatrta • Tema para CtrlPanel",
     "description": "Tema definitivo animado alto rendimiento y fluido con animaciones y colores de blanco y negro",
     "parent": "default",
-    "path": "themes/MayTheme",
+    "path": "themes/Hostrta",
     "version": "12.2",
-    "author": "SoyMaycol"
+    "author": "Felix ofc"
 }
